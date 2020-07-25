@@ -1,20 +1,16 @@
 <div class="top-menu">
-
     <img class="logo" src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
-
 </div>
 
+<button (click)="AddCard()">Edit Courses</button>
 
-<div class="demo">
+<div class="demo" #dateTemplate>
     <div>{{startDate | date: 'MMM/dd/yyyy'}}</div>
 </div>
 
 <div class="courses">
-    <course-card *ngFor="let course of courses; index as i; first as isFirst; last as isLast" 
-    [class.is-first]="isFirst"
-    [class.is-last]="isLast"
-    [cardIndex]="i + 1"
-    [course]="course" 
-    (courseSelected)="onCourseSelected($event)">
+    <course-card #cardList
+    *ngFor="let course of courses" 
+    [course]="course" (courseSelected)="onCourseSelected($event)">
     </course-card>
 </div>

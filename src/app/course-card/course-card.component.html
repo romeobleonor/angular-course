@@ -1,9 +1,9 @@
 <div class="course-card" [ngClass]="{beginner: course.category === 'BEGINNER'}">
 
   <div class="course-title" [ngStyle]="cardStyle()">
-     {{cardIndex}} {{course.description}}
+     {{cardIndex || ''}} {{course.description}}
   </div>
-  <img width="300" alt="Angular Logo" *ngIf="isImageAvailable(); else noImage"
+  <img #courseImg width="300" alt="Angular Logo" *ngIf="isImageAvailable(); else noImage"
        [src]="course.iconUrl">
 
   <ng-template #noImage>

@@ -41,8 +41,12 @@ export class CourseCardComponent implements OnInit {
   cardStyle() {
     return {
       'text-decoration': 'underline',
-      'color': '#999'
+      'color': '#333'
     };
+  }
+
+  test() {
+    alert('accessed through viewChild referenced');
   }
 
 }
