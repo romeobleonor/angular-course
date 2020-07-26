@@ -2,10 +2,14 @@
     <img class="logo" src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
 </div>
 
+<div class="demo">
+    <button (click)="onEditCourse()">Edit course</button>
+</div>
+
 <div>
     <div class="courses">
 
-        <course-card *ngFor="let course of courses$ | async" [course]="course"
+        <course-card *ngFor="let course of courses" [course]="course"
             (courseChanged)="onCourseChanged($event)">
 
             <course-image [src]="course.iconUrl"></course-image>
