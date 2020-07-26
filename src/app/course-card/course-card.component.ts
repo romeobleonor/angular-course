@@ -1,16 +1,19 @@
 import { Course } from './../model/course';
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ContentChild, ElementRef, AfterContentChecked, AfterContentInit, TemplateRef } from '@angular/core';
 
 @Component({
   selector: 'course-card',
   templateUrl: './course-card.component.html',
   styleUrls: ['./course-card.component.scss']
 })
-export class CourseCardComponent implements OnInit {
+export class CourseCardComponent implements OnInit, AfterContentInit {
 
   @Output() courseSelected = new EventEmitter<Course>();
   @Input() course: Course;
   @Input() cardIndex: Number;
+  @Input() noImgTemplate: TemplateRef<any>;
+
+  @ContentChild('courseImg') courseImg: ElementRef;
 
   constructor() { }
 
@@ -18,7 +21,12 @@ export class CourseCardComponent implements OnInit {
   }
 
   onCourseViewed() {
-    this.courseSelected.emit(this.course);
+    //console.log("yes")
+    //this.courseSelected.emit(this.course);
+  }
+
+  ngAfterContentInit() {
+    console.log(this.courseImg);
   }
 
   isImageAvailable() {
