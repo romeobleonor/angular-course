@@ -9,8 +9,9 @@
 
   <div class="courses">
 
-    <course-card *ngFor="let course of courses"
-                 [course]="course">
+    <course-card highlighted *ngFor="let course of courses$ | async"
+                 [course]="course"
+                 (courseChanged)="onCourseChanged($event)">
 
       <course-image [src]="course.iconUrl"></course-image>
 
