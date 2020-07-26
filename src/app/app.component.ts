@@ -1,19 +1,9 @@
-import { CONFIG_TOKEN, APP_CONFIG1, AppConfig } from './config';
+import { HttpClient } from '@angular/common/http';
+import { Component, Inject, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { AppConfig, APP_CONFIG1 } from './config';
+import { Course } from './model/course';
 import { CoursesService } from './services/courses.service';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren, InjectionToken, Inject } from '@angular/core';
-import {COURSES} from '../db-data';
-import {Course} from './model/course';
-import {CourseCardComponent} from './course-card/course-card.component';
-import {HighlightedDirective} from './directives/highlighted.directive';
-import {Observable} from 'rxjs';
-
-// this provided will then be passed to the dependency injection SYSTEM
-// function coursesServiceProvider(http: HttpClient): CoursesService {
-//   return new CoursesService(http);
-// }
-
-// export const COURSES_SERVICE = new InjectionToken<CoursesService>('COURSES_SERVICE');
 
 @Component({
   selector: 'app-root',
@@ -25,13 +15,6 @@ import {Observable} from 'rxjs';
       useValue: APP_CONFIG1
     }
   ]
-  // providers: [
-  //   // {
-  //   //   provide: CoursesService,
-  //   //   useClass: CoursesService
-  //   // }
-  //   CoursesService
-  // ]
 })
 export class AppComponent implements OnInit {
 
@@ -46,16 +29,11 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    //const params = new HttpParams().set('page', '1').set('pageSize', '10');
-    //const path = '/api/courses';
-    //this.http.get<Course[]>(path, {params}).subscribe((courses) => this.courses = courses);
-    //this.courses$ = this.http.get<Course[]>(path, {params}); // implicitly subscribe
-
     this.courses$ = this.coursesService.loadCourses();
   }
 
   onCourseChanged(course: Course) {
-    this.coursesService.saveCourse(course).subscribe(() => console.log("subscribe test"));
+    this.coursesService.saveCourse(course).subscribe(() => console.log('subscribe test'));
   }
 
 

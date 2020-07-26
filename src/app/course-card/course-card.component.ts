@@ -1,52 +1,38 @@
 import {
-    AfterContentInit,
-    AfterViewInit,
-    Component,
-    ContentChildren,
-    ElementRef,
-    EventEmitter,
-    Input,
-    OnInit,
-    Output,
-    QueryList,
-    ViewEncapsulation
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output
 } from '@angular/core';
-import {Course} from '../model/course';
-import {CourseImageComponent} from '../course-image/course-image.component';
+import { Course } from '../model/course';
 
 @Component({
-    selector: 'course-card',
-    templateUrl: './course-card.component.html',
-    styleUrls: ['./course-card.component.css']
+  // tslint:disable-next-line: component-selector
+  selector: 'course-card',
+  templateUrl: './course-card.component.html',
+  styleUrls: ['./course-card.component.css']
 })
 export class CourseCardComponent implements OnInit {
 
-    @Input()
-    course: Course;
+  @Input()
+  course: Course;
 
-    @Input()
-    cardIndex: number;
+  @Input()
+  cardIndex: number;
 
-    @Output('courseChanged')
-    courseEmitter = new EventEmitter<Course>();
+  // tslint:disable-next-line: no-output-rename
+  @Output('courseChanged')
+  courseEmitter = new EventEmitter<Course>();
 
+  constructor() {
+  }
 
-    constructor() {
-
-    }
-
-    ngOnInit() {
-
-    }
+  ngOnInit() {
+  }
 
 
-    onSaveClicked(description: string) {
-
-        this.courseEmitter.emit({...this.course, description});
-
-    }
-
-
-
-
+  onSaveClicked(description: string) {
+    this.courseEmitter.emit({ ...this.course, description });
+  }
 }

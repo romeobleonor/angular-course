@@ -1,27 +1,16 @@
 <div class="top-menu">
-
-  <img class="logo"
-       src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
-
+    <img class="logo" src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
 </div>
 
 <div>
+    <div class="courses">
 
-  <div class="courses">
+        <course-card *ngFor="let course of courses$ | async" [course]="course"
+            (courseChanged)="onCourseChanged($event)">
 
-    <course-card highlighted *ngFor="let course of courses$ | async"
-                 [course]="course"
-                 (courseChanged)="onCourseChanged($event)">
+            <course-image [src]="course.iconUrl"></course-image>
 
-      <course-image [src]="course.iconUrl"></course-image>
+        </course-card>
 
-    </course-card>
-
-  </div>
-
-
+    </div>
 </div>
-
-
-
-

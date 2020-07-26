@@ -3,8 +3,6 @@ import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Course } from '../model/course';
 
-// using the provided in makes your injectable service treeshakable
-// removing allows you to create your own provider
 @Injectable(
   {
     providedIn: 'root'
@@ -21,7 +19,7 @@ export class CoursesService {
   }
 
   saveCourse(course: Course) {
-    const headers = new HttpHeaders().set("X-Auth", "userId");
+    const headers = new HttpHeaders().set('X-Auth', 'userId');
     const path = `/api/courses/${course.id}`;
     return this.http.put<void>(path, course, { headers });
   }
